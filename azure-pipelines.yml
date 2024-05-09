@@ -7,17 +7,21 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-latest  '
 
 variables:
-  solution: '**/*.sln'
+  solution: '**/WebApplicationMVC.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
 - task: NuGetToolInstaller@1
+  name: 'NuGetToolInstaller'
+  displayName: 'Nuget Tool Installer'
 
 - task: NuGetCommand@2
+  name: 'NuGetRestore'
+  displayName: 'Nuget restore packages'
   inputs:
     restoreSolution: '$(solution)'
 
